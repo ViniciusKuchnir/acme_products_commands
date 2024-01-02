@@ -30,11 +30,11 @@ class ProductController {
 
     @Operation(summary = "creates a product")
     @PostMapping("/{userId}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<ProductDTO> create(@RequestBody Product manager, @PathVariable Long userId) {
         try {
             final ProductDTO product = service.create(manager, userId);
-            return new ResponseEntity<ProductDTO>(product, HttpStatus.CREATED);
+            return new ResponseEntity<ProductDTO>(product, HttpStatus.ACCEPTED);
         }
         catch( Exception e ) {
             throw new ResponseStatusException(HttpStatus.CONFLICT,"Product must have a unique SKU.");
@@ -46,7 +46,7 @@ class ProductController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Product> approveProduct(@RequestBody ProductApprovals request){
             service.approveProduct(request.getSku(), request.getUserId());
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.accepted().build();
     }
 
 
@@ -59,7 +59,7 @@ class ProductController {
         if( productDTO == null )
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Product not found.");
         else
-            return ResponseEntity.ok().body(productDTO);
+            return ResponseEntity.accepted().body(productDTO);
     }
 
     @Operation(summary = "deletes a product")
@@ -67,6 +67,6 @@ class ProductController {
     public ResponseEntity<Product> delete(@PathVariable("sku") final String sku ){
 
         service.deleteBySku(sku);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.accepted().build();
     }
 }
