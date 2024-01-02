@@ -30,5 +30,5 @@ services:
       - "8079:8079"
     depends_on:
       acme_rabbitmq:
-        condition: service_healthy
+        condition: service_started
       
