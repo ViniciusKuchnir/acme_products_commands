@@ -19,7 +19,7 @@
 <ul>
   <li><strong>Programming Language:</strong> Java</li>
   <li><strong>Framework:</strong> Spring Boot</li>
-  <li><strong>Database:</strong> H2 Database and CSV</li>
+  <li><strong>Database:</strong> H2 Database</li>
   <li><strong>Messaging system:</strong> RabbitMQ</li>
 </ul>
 
